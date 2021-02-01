@@ -1,0 +1,25 @@
+{
+  "name": "loginsystem",
+  "version": "1.0.0",
+  "description": "a login system using nodejs ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monthAndEclipse/LoginSystem.git"
+  },
+  "keywords": [
+    "login",
+    "system",
+    "express.js",
+    "passport.js"
+  ],
+  "author": "lg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monthAndEclipse/LoginSystem/issues"
+  },
+  "homepage": "https://github.com/monthAndEclipse/LoginSystem#readme"
+}
