@@ -1,0 +1,255 @@
+<html>
+    <head>
+        <style>
+            .nav-item a{
+                color: black;
+                cursor: pointer;
+            }
+            .nav-item a:hover{
+                color: blue;
+                text-decoration: underline;
+            }    
+            .modal-header{
+                border-bottom: none;
+            }
+            .modal-footer{
+                border-top: none;
+            }
+            .modal-content{
+              width: 90%;
+            }
+            .form-control {
+              border-radius: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+        
+        <div class="container  h-75 ">
+            <div class="row align-items-center h-100">
+                <div class="col">
+                    <h1 class="text-center">Welcome!</h1>
+                    <p class="lead text-center">a simple login system using node.js+express.js+mangodb+passport.js</p>
+                    <ul class="nav justify-content-center fs-4">
+                        <!--data-bs-backdrop="static" when clicking on the backdrop,the modal will not be closed -->
+                        <li class="nav-item  ">
+                          <a class="nav-link" aria-current="page" 
+                          data-bs-toggle="modal" 
+                          data-bs-target="#signIn_modal" 
+                          data-bs-backdrop="static">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link"  
+                          data-bs-toggle="modal" 
+                          data-bs-target="#signUp_modal" 
+                          data-bs-backdrop="static">
+                            Sign up
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--sign in modal start-->
+        <div class="modal fade" id="signIn_modal" tabindex="-1" aria-labelledby="signIn_modalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="text-center">
+                  <h2>Please sign in</h2>
+              </div>
+             <div class="modal-body">
+               <form>
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-8">
+                      <div class="input-group input-group-lg ">
+                        <input type="email" class="form-control" placeholder="Email address" aria-label="username" required>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="password" class="form-control" placeholder="Password" aria-label="password" required> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mb-4">
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                  <button type="submit" class="w-50 btn btn-primary btn-lg">  
+                    <span class="visually-hidden spinner-grow spinner-grow-md" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Loading...</span>
+                    <span class="">Sign In</span></button>
+                </div>
+               </form>
+             </div>
+            </div>
+          </div>
+        </div>
+        <!--sign in modal end -->
+
+
+        <!--sign up modal start -->
+        <div class="modal fade" id="signUp_modal" tabindex="-1" aria-labelledby="signUp_modalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="text-center">
+                  <h2>Please sign up</h2>
+              </div>
+             <div class="modal-body">
+               <form>
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-8">
+                      <div class="input-group mb-3 input-group-lg ">
+                        <input type="email" class="form-control" placeholder="Email address" aria-label="username" required>
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="input-group  input-group-lg">
+                        <input type="password" class="form-control" placeholder="Password" aria-label="password" required> 
+                      </div>
+                    </div>
+                    <div class="col-8">
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="password" class="form-control" placeholder="Confirm Password" aria-label="password" required> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mb-4">
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                  <button type="submit" class="w-50 btn btn-primary btn-lg">
+                    <span class="visually-hidden spinner-grow spinner-grow-md" role="status" aria-hidden="true"></span>
+                    <span class="visually-hidden">Loading...</span>
+                    <span class="">Sign up</span>
+                  </button>
+                </div>
+               </form>
+             </div>
+             
+            </div>
+          </div>
+        </div>
+        <!--sign up modal end -->
+
+
+
+        <script>
+          window.addEventListener('load',()=>{
+            //signin button
+            let signIn_btn = document.querySelector('#signIn_modal form button[type="submit"]');
+            //signin modal
+            let signIn_modal = new bootstrap.Modal(document.getElementById('signIn_modal'), {
+              keyboard: false,
+              backdrop: 'static'
+            }) 
+            //signin form
+            let signIn_form = document.querySelector('#signIn_modal form');
+            let signUp_spans= document.querySelectorAll('#signIn_modal form button span');
+
+
+
+            //signUp button
+            let signUp_btn = document.querySelector('#signUp_modal form button[type="submit"]');
+            //signUp modal
+            let signUp_modal = new bootstrap.Modal(document.getElementById('signUp_modal'), {
+              keyboard: false,
+              backdrop: 'static'
+            }) 
+            //signup form
+            let signUp_form = document.querySelector('#signUp_modal form');
+            let signUp_spans= document.querySelectorAll('#signUp_modal form button span');
+
+
+            //signInEvent
+            signIn_btn.addEventListener('click',(e)=>{
+              e.preventDefault();
+              if(signIn_form.checkValidity()){
+                //customized code
+                let data = {
+                  username:document.querySelector('#signIn_modal form input[type="email"]'),
+                  password:document.querySelector('#signIn_modal form input[type="password"]')
+                }
+                fetch("/user/signup",{
+                  method: 'POST',
+                  body:JSON.stringify(data),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                  console.log(data);
+                })
+                .catch((err)=>{
+                  console.log(err);
+                })
+              }else{
+                signIn_form.reportValidity();
+              }
+            });
+
+
+            //signUpEvent
+            signUp_btn.addEventListener('click',(e)=>{
+              e.preventDefault();
+
+              if(signUp_form.checkValidity()){
+                //customized code
+                showSpinner();
+                let data = {
+                  email:document.querySelector('#signUp_modal form input[type="email"]').value,
+                  password:document.querySelector('#signUp_modal form input[type="password"]').value,
+                  confirmedPassword:document.querySelectorAll('#signUp_modal form input[type="password"]')[1].value,
+                }
+                fetch("/user/signup",{
+                  method: 'POST',
+                  body:JSON.stringify(data),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                  showSpinner();
+                  console.log(data);
+                  if(data.code === -1){
+                    alert(data.errors[0].msg);
+                  }else{
+                    alert("signup successfully , please sign in.")
+                    signUp_modal.hide();
+                    signIn_modal.show();
+                  }
+                })
+                .catch((err)=>{
+                  throw err
+                })
+              }else{
+                signUp_form.reportValidity();
+              }
+            });
+          })
+
+          //load the spinner
+          function showSpinner(){
+            signUp_spans.forEach(element => {
+              if(element.classList.contains('visually-hidden')){
+                element.classList.remove('visually-hidden')
+              }else{
+                element.classList.add('visually-hidden')
+              }
+            });
+          }
+        </script>
+    </body>   
+</html>
