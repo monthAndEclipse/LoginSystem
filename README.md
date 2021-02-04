@@ -52,7 +52,7 @@ code snippet :
             }
 )
 
+```
+
 so we exculde the passport module from the .gitignore file and the package.json file
 and push this module to the github repo.
-
-```
