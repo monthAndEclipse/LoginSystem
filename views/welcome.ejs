@@ -224,6 +224,7 @@
                   console.log(err);
                   toast_body.innerHTML ="wrong email or password"
                   toast.show();
+                  showSpinner(signIn_spans); 
                 })
               }else{
                 signIn_form.reportValidity();
