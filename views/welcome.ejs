@@ -221,7 +221,9 @@
                  
                 })
                 .catch((err)=>{
-                  console.log(res);
+                  console.log(err);
+                  toast_body.innerHTML ="wrong email or password"
+                  toast.show();
                 })
               }else{
                 signIn_form.reportValidity();
