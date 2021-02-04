@@ -210,8 +210,9 @@
                 .then(res=>res.json())
                 .then(data=>{
                   if(data.code === -1){
-                   toast_body.innerHTML = data.message;
+                   toast_body.innerHTML = data.message.message;
                    toast.show();
+                   showSpinner(signIn_spans); 
                   }else{
                     showSpinner(signIn_spans);  
                     //redirect to index page

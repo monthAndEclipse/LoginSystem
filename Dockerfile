@@ -6,7 +6,7 @@ RUN npm install
 #don't use regex like ./*/* ,it will copy all your files of the current folder
 #into the container folder but without keeping the subfolder structure
 COPY ./ ./
-EXPOSE 3000 
+EXPOSE 4000 
 CMD [ "node" ,"index.mjs" ] 
 
 #how to run commands in a stopped docker container?
