@@ -1,6 +1,9 @@
 import express from "express"
 import User from '../model/user.mjs'
 import bcrypt from "bcrypt-nodejs"
+import passport from 'passport'
+import ensureAuthenticate from '../authentication/ensureAuthenticate.mjs'
+
 
 const router = express.Router();
 
@@ -56,23 +59,33 @@ router.post('/signup',(req,res)=>{
     }
 })
 
-router.post('/signin',(req,res)=>{
-    const {email,password} = req.body;
-    let errors = [];
-    if(!email||!password){
-        errors.push({msg:"email or password should not be empty"})
-    }
-    if(errors.length>0){
-        res.end({code:-1,errors:errors});
-    }else{
 
-    }
-    
+router.post('/signin',
+            passport.authenticate('local',{customMessage:true}),
+            (req,res,next)=>{
+                console.log(req.customMessage)
+                if(req.isAuthenticated()){
+                    res.end(JSON.stringify({code:0,message:req.authInfo,user:req.user.id}))
+                }else{
+                    res.end(JSON.stringify({code:-1,message:req.customMessage,user:{}}))
+                }
+            }
+)
 
+
+
+router.get('/logout',ensureAuthenticate,(req,res)=>{
+    req.logOut();
+    res.end(JSON.stringify({code:0,message:'logout successfully'}));
 })
 
-router.get('/logout',(req,res)=>{
-    res.end('logout');
+
+router.get('/info',ensureAuthenticate,(req,res)=>{
+    res.end(JSON.stringify({name:req.user.email,id:req.user.id}));
 })
+
+
+
+
 
 export default router

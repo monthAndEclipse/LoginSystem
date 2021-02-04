@@ -1,6 +1,7 @@
 <html>
     <head>
         <style>
+            
             .nav-item a{
                 color: black;
                 cursor: pointer;
@@ -24,10 +25,23 @@
         </style>
     </head>
 
-    <body>
+    <body >
         
         <div class="container  h-75 ">
-            <div class="row align-items-center h-100">
+          <div class="row justify-content-end">
+            <div class="col-3" style="z-index: 99976;">
+              <div class="toast fade" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                  <strong class="me-auto">LoginSystem</strong>
+                  <small>just now</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="row align-items-center h-75">
                 <div class="col">
                     <h1 class="text-center">Welcome!</h1>
                     <p class="lead text-center">a simple login system using node.js+express.js+mangodb+passport.js</p>
@@ -146,6 +160,11 @@
 
         <script>
           window.addEventListener('load',()=>{
+
+            let toast = new bootstrap.Toast(document.querySelector('.toast'), {delay:3000});
+            let toast_body = document.querySelector('.toast-body')
+
+
             //signin button
             let signIn_btn = document.querySelector('#signIn_modal form button[type="submit"]');
             //signin modal
@@ -155,7 +174,7 @@
             }) 
             //signin form
             let signIn_form = document.querySelector('#signIn_modal form');
-            let signUp_spans= document.querySelectorAll('#signIn_modal form button span');
+            let signIn_spans= document.querySelectorAll('#signIn_modal form button span');
 
 
 
@@ -176,11 +195,12 @@
               e.preventDefault();
               if(signIn_form.checkValidity()){
                 //customized code
+                showSpinner(signIn_spans);
                 let data = {
-                  username:document.querySelector('#signIn_modal form input[type="email"]'),
-                  password:document.querySelector('#signIn_modal form input[type="password"]')
+                  email:document.querySelector('#signIn_modal form input[type="email"]').value,
+                  password:document.querySelector('#signIn_modal form input[type="password"]').value
                 }
-                fetch("/user/signup",{
+                fetch("/user/signin",{
                   method: 'POST',
                   body:JSON.stringify(data),
                   headers: {
@@ -189,10 +209,18 @@
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                  console.log(data);
+                  if(data.code === -1){
+                   toast_body.innerHTML = data.message;
+                   toast.show();
+                  }else{
+                    showSpinner(signIn_spans);  
+                    //redirect to index page
+                    window.location.reload();                  
+                  }
+                 
                 })
                 .catch((err)=>{
-                  console.log(err);
+                  console.log(res);
                 })
               }else{
                 signIn_form.reportValidity();
@@ -206,7 +234,7 @@
 
               if(signUp_form.checkValidity()){
                 //customized code
-                showSpinner();
+                showSpinner(signUp_spans);
                 let data = {
                   email:document.querySelector('#signUp_modal form input[type="email"]').value,
                   password:document.querySelector('#signUp_modal form input[type="password"]').value,
@@ -221,12 +249,14 @@
                 })
                 .then(res=>res.json())
                 .then(data=>{
-                  showSpinner();
+                  showSpinner(signUp_spans);
                   console.log(data);
                   if(data.code === -1){
-                    alert(data.errors[0].msg);
+                    toast_body.innerHTML = data.errors[0].msg;
+                    toast.show();
                   }else{
-                    alert("signup successfully , please sign in.")
+                    toast_body.innerHTML ="signup successfully , please sign in."
+                    toast.show();
                     signUp_modal.hide();
                     signIn_modal.show();
                   }
@@ -241,8 +271,8 @@
           })
 
           //load the spinner
-          function showSpinner(){
-            signUp_spans.forEach(element => {
+          function showSpinner(doms){
+            doms.forEach(element => {
               if(element.classList.contains('visually-hidden')){
                 element.classList.remove('visually-hidden')
               }else{
