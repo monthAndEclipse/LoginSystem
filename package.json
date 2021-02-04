@@ -4,6 +4,7 @@
   "description": "a login system using nodejs ",
   "main": "index.js",
   "scripts": {
+    "serve":"node index.mjs",
     "test": "nodemon ./index.mjs"
   },
   "repository": {

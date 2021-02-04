@@ -11,7 +11,7 @@ install the latest version
 ├──passport  
 ├──passport-local 
 ├──mongoose 
-├──bcrypt
+├──bcrypt-node
 ├──ejs 
 ├──bootstrap
 ```

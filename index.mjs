@@ -40,5 +40,5 @@ app.use('/',indexRouter);
 app.use('/user',userRouter);
 
 app.listen(4000,()=>{
-    console.log('server started successfully,vist at http://localhost:3000/')
+    console.log('server started successfully,vist at http://localhost:4000/')
 });
