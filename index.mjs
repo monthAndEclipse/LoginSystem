@@ -39,6 +39,6 @@ app.use(express.static('node_modules/bootstrap/dist/'))
 app.use('/',indexRouter);
 app.use('/user',userRouter);
 
-app.listen(3000,()=>{
+app.listen(4000,()=>{
     console.log('server started successfully,vist at http://localhost:3000/')
 });
