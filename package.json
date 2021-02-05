@@ -21,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/monthAndEclipse/LoginSystem/issues"
   },
-  "homepage": "https://github.com/monthAndEclipse/LoginSystem#readme"
+  "homepage": "https://github.com/monthAndEclipse/LoginSystem#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.14",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
