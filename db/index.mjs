@@ -1,6 +1,6 @@
 import moogoose from 'mongoose'
 const ENV = {
-    url:'mongodb://119.23.19.189:27017/',
+    url:'mongodb://ip:port/',
     dbName : "test" , //defalut
     dbconfig:{
         connectTimeoutMS: 30000,
@@ -9,8 +9,8 @@ const ENV = {
         //add this to remove the authentication error when provided the dbname
         authSource:"admin",
         auth:{
-            user: "root",
-            password: "password"
+            user: "youruser",
+            password: "yourpassword"
         }
     }
 }
