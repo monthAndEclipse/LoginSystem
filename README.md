@@ -17,6 +17,10 @@ So we can tell the advantages provided by the framework(vue).
 ```
 git clone https://github.com/monthAndEclipse/LoginSystem.git
 
+we already add static dist folder into the repo 
+checkout login_system_frontend 'https://github.com/monthAndEclipse/login_system_frontend.git' to get the source code
+
+
 cd LoginSystem
 
 git checkout dev

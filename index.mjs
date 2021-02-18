@@ -41,5 +41,5 @@ app.use('/user',userRouter)
 
 app.listen('4000',(err)=>{
     if(err) throw err;
-    console.log('server started successfully')
+    console.log('server started successfully visit : http://localhost:4000/ to see the pages')
 })
