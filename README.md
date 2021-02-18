@@ -6,14 +6,14 @@ using ejs tempalte engine at backend to render pages
 and inside these pages, pure javascript(no jquery or vue framework) was used to implement
 all the logic
 
-# Dev branch (working)
+# Dev branch 
 instead of using ejs, we now use vue.js to build our frontend.
 doing the same thing, but using different implementation .
 So we can tell the advantages provided by the framework(vue).
+and thus we had created a new repo to develop our [frontend](https://github.com/monthAndEclipse/login_system_frontend.git)
 
 
-
-# [live Demo](http://119.23.19.189:4000)
+# [live Demo,Main branch](http://119.23.19.189:4000)
 
 
 # Quick Start
