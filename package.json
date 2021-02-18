@@ -4,7 +4,8 @@
   "description": "a login system using nodejs ",
   "main": "index.js",
   "scripts": {
-    "test": "node ./index.js"
+    "serve": "node ./index.mjs",
+    "test": "nodemon ./index.mjs"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "homepage": "https://github.com/monthAndEclipse/LoginSystem#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "connect-history-api-fallback": "^1.6.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.11.14",
